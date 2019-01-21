@@ -9,9 +9,12 @@
     "start": "npm run watch:sass & npm run devserver",
     "compile:sass": "node-sass development/scss/main.scss production/style.comp.css",
     "concat:css": "concat -o production/style.concat.css development/vendor/normalize.css production/style.comp.css",
+    "concat:js": "concat -o production/script.concat.js development/js/vendor.js development/js/index.js",
     "prefix:css": "postcss production/style.concat.css -u autoprefixer -o production/style.prefix.css",
     "compress:css": "node-sass production/style.prefix.css production/style.css --output-style compressed",
-    "build:css": "npm run compile:sass && npm run concat:css && npm run prefix:css && npm run compress:css"
+    "uglify:js": "uglifyjs production/script.concat.js -o production/script.dist.js -c",
+    "build:css": "npm run compile:sass && npm run concat:css && npm run prefix:css && npm run compress:css",
+    "build:js": "npm run concat:js && npm run uglify:js"
   },
   "browserslist": [
     "last 10 version",
@@ -24,6 +27,7 @@
     "autoprefixer": "^9.4.5",
     "concat": "^1.0.3",
     "node-sass": "^4.11.0",
-    "postcss-cli": "^6.1.1"
+    "postcss-cli": "^6.1.1",
+    "uglify-js": "^3.4.9"
   }
 }
