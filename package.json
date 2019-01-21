@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf production/",
     "watch:sass": "node-sass development/scss/main.scss production/style.css -w",
     "devserver": "live-server",
     "start": "npm run watch:sass & npm run devserver",
@@ -14,7 +15,8 @@
     "compress:css": "node-sass production/style.prefix.css production/style.css --output-style compressed",
     "uglify:js": "uglifyjs production/script.concat.js -o production/script.dist.js -c",
     "build:css": "npm run compile:sass && npm run concat:css && npm run prefix:css && npm run compress:css",
-    "build:js": "npm run concat:js && npm run uglify:js"
+    "build:js": "npm run concat:js && npm run uglify:js",
+    "build": "npm run clean && npm run build:css && npm run build:js"
   },
   "browserslist": [
     "last 10 version",
@@ -28,6 +30,7 @@
     "concat": "^1.0.3",
     "node-sass": "^4.11.0",
     "postcss-cli": "^6.1.1",
+    "rimraf": "^2.6.3",
     "uglify-js": "^3.4.9"
   }
 }
